@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "792900807622",
+    "firebase_url": "https://sitter-dcaa9.firebaseio.com",
+    "project_id": "sitter-dcaa9",
+    "storage_bucket": "sitter-dcaa9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792900807622:android:f4f0358d9dc8c4984420c7",
+        "android_client_info": {
+          "package_name": "com.example.sitter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "792900807622-mvbch2edhe1oo96tjt2bq3ii20k3m33i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sitter",
+            "certificate_hash": "56bf60c804cbc1630c273feb701f1f139f66f1ab"
+          }
+        },
+        {
+          "client_id": "792900807622-ikd5cp35u5lth66jt0bkr2r1ohlercds.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWuxpqnBtqv2Ne3UzTqpH_g5CbbKYiKGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "792900807622-ikd5cp35u5lth66jt0bkr2r1ohlercds.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

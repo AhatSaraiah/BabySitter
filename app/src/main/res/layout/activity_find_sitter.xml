@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FindSitterActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/myLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        >
+
+        <TextView
+            android:id="@+id/simpleTextID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="20dp"
+            android:text="Search for baby sitter in your area! "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_box_input"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_below="@id/simpleTextID"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            android:hint="search here..."
+            android:inputType="textMultiLine"
+            android:padding="10dp"
+           />
+
+        <Button
+            android:id="@+id/search_people_button"
+            android:layout_width="212dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/simpleTextID"
+            android:layout_marginStart="-131dp"
+            android:layout_marginTop="85dp"
+            android:text="Search"
+            android:layout_toEndOf="@id/search_box_input"
+            android:background="@drawable/buttonshape"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_result_list"
+            android:layout_width="match_parent"
+            android:layout_height="580dp"
+            android:layout_below="@+id/search_box_input"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

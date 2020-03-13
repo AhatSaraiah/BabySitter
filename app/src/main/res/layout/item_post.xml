@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="93dp"
+        android:padding="10dp">
+
+        <include
+            android:id="@+id/postAuthorLayout"
+            layout="@layout/include_post_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true" />
+
+
+        <include
+            layout="@layout/include_post_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/postAuthorLayout"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/post_date"
+            android:layout_width="147dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/postAuthorLayout"
+            android:layout_marginLeft="238dp"
+            android:ems="10" />
+
+        <TextView
+            android:id="@+id/post_time"
+            android:layout_width="147dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/postAuthorLayout"
+            android:layout_marginLeft="238dp"
+            android:ems="10" />
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

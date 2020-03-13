@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Sitter</string>
+
+    <string name="label_emailpassword">Email/Password Authentication</string>
+
+    <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
+
+    <string name="sign_up">Create an account</string>
+    <string name="log_in">כניסה</string>
+    <string name="prompt_username">A-Z characters and numbers</string>
+    <string name="prompt_password">A-Z characters and numbers</string>
+    <string name="prompt_password_again">confirm password</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
+    <string name="signed_out">signed out</string>
+    <string name="auth_failed">Authentication failed</string>
+    <string name="register_successful">Registered successfully</string>
+    <string name="auth_successful">Login successfully</string>
+
+
+    <string name="firebaseui_status_fmt">Firebase User: %s</string>
+
+    <string name="firebaseui_title_text">FirebaseUI Auth</string>
+
+    <string name="status_email_not_sent">Send link to your email to get started.</string>
+
+    <string name="status_email_sent">Link sent, check your email to continue.</string>
+
+    <string name="status_link_found">Link received, enter email to sign in.</string>
+
+
+    <string name="verify_phone_auth">Verify</string>
+
+    <string name="resend_phone_auth">Resend</string>
+
+    <string name="hint_phone_number">Phone Number</string>
+
+    <string name="hint_verification_code">Verification Code</string>
+
+    <string name="status_code_sent">Code Sent</string>
+
+    <string name="status_verification_failed">Verification failed</string>
+
+    <string name="sign_in">Sign In</string>
+
+    <string name="create_account">Create Account</string>
+
+    <string name="send_link">Send Link</string>
+
+    <string name="sign_out">Sign Out</string>
+
+    <string name="verify_email">Verify Email</string>
+
+    <string name="disconnect">Disconnect</string>
+    <!-- Error messages -->
+    <string name="error_sign_in_failed">Sign in failed, see logs for details.</string>
+    <string name="error_end">.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="drawer_open">drawer open</string>
+    <string name="drawer_close">drawer close</string>
+
+
+</resources>
