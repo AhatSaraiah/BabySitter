@@ -2,16 +2,17 @@ package com.example.sitter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class PostActivity extends AppCompatActivity {
@@ -33,11 +36,11 @@ public class PostActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private ProgressDialog loadingBar;
 
-    private Button UpdatePostButton;
+    private Button updatePostButton;
     private EditText PostDescription;
     private String Description;
+    private long countPost = 0;
 
-    private StorageReference PostsImagesRefrence;
     private DatabaseReference UsersRef, PostsRef;
     private FirebaseAuth mAuth;
 
@@ -50,13 +53,28 @@ public class PostActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         current_user_id = mAuth.getCurrentUser().getUid();
 
-        PostsImagesRefrence = FirebaseStorage.getInstance().getReference();
         UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
         PostsRef = FirebaseDatabase.getInstance().getReference().child("Posts");
 
+        mToolbar = (Toolbar)findViewById(R.id.toolbar);
+//        setSupportActionBar(mToolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setTitle("Update Post");
 
-       PostDescription =(EditText) findViewById(R.id.postTextLayout);
+        updatePostButton=findViewById(R.id.Post_btn);
+        PostDescription = findViewById(R.id.post);
+      //  Description= findViewById(R.id.postBody);
         loadingBar = new ProgressDialog(this);
+
+        updatePostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ValidatePostInfo();
+                SavingPostInformationToDatabase();
+            }
+        });
+
 
     }
 
@@ -69,7 +87,7 @@ public class PostActivity extends AppCompatActivity {
 
         if(TextUtils.isEmpty(Description))
         {
-            Toast.makeText(this, "Please say something about your image...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "please write something..", Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -86,6 +104,16 @@ public class PostActivity extends AppCompatActivity {
 
     private void SavingPostInformationToDatabase()
     {
+
+        Calendar calForDate = Calendar.getInstance();
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMMM-yyyy");
+        saveCurrentDate = currentDate.format(calForDate.getTime());
+
+        Calendar calForTime = Calendar.getInstance();
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
+        saveCurrentTime= currentTime.format(calForTime.getTime());
+
+        postRandomName = saveCurrentDate + saveCurrentTime;
         UsersRef.child(current_user_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
@@ -102,6 +130,7 @@ public class PostActivity extends AppCompatActivity {
                     postsMap.put("description", Description);
                     postsMap.put("profileimage", userProfileImage);
                     postsMap.put("fullname", userFullName);
+                    postsMap.put("counter", countPost);
                     PostsRef.child(current_user_id + postRandomName).updateChildren(postsMap)
                             .addOnCompleteListener(new OnCompleteListener() {
                                 @Override
@@ -141,7 +170,6 @@ public class PostActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
     private void SendUserToHomeActivity()

@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="user full name"
                 android:textAlignment="textStart"
-                android:textColor="@android:color/background_light"
+                android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 />
@@ -46,12 +46,12 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/all_users_status"
+            android:id="@+id/all_users_aboutme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="status"
+            android:hint="About me"
             android:textAlignment="textStart"
-            android:textColor="@android:color/background_light"
+            android:textColor="@android:color/black"
             android:textSize="16sp"
             />
 

@@ -16,13 +16,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:titleTextColor="@color/primary"
+                />
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user_profile_pic"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
+                android:layout_below="@id/toolbar"
                 android:src="@drawable/profile"/>
 
 
@@ -32,9 +41,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_profile_pic"
                 android:layout_marginTop="30dp"
-                android:text="Profile Name"
+                android:hint="Profile Name"
                 android:textAlignment="center"
-                android:textAllCaps="false"
                 android:textColor="@android:color/background_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -43,75 +51,58 @@
                 android:id="@+id/person_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="User Name"
+                android:hint="User Name"
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/person_full_name"
                 android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@android:color/background_light"
+                android:textColor="@android:color/white"
                 android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/user_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="about me "
-                android:layout_below="@id/person_username"
-                android:textAlignment="center"
-                android:layout_marginTop="10dp"
-                android:textAllCaps="false"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="22sp" />
 
             <TextView
                 android:id="@+id/user_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Country"
-                android:layout_below="@id/user_details"
+                android:hint="City"
+                android:layout_below="@id/person_username"
                 android:textAlignment="center"
-                android:layout_marginTop="40dp"
-                android:textAllCaps="false"
-                android:textColor="@color/colorAccent"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
 
+
             <TextView
-                android:id="@+id/user_dob"
+                android:id="@+id/user_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Date of Birth"
+                android:hint="about me "
                 android:layout_below="@id/user_city"
                 android:textAlignment="center"
-                android:layout_marginTop="5dp"
-                android:textAllCaps="false"
-                android:textColor="@color/colorAccent"
+                android:layout_marginTop="10dp"
+                android:textColor="@android:color/darker_gray"
                 android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/user_gender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Gender"
-                android:layout_below="@id/user_dob"
-                android:textAlignment="center"
-                android:layout_marginTop="5dp"
-                android:textAllCaps="false"
-                android:textColor="@color/colorAccent"
-                android:textSize="18sp" />
-
 
             <Button
                 android:id="@+id/send_message_btn"
-                android:layout_width="250dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/user_gender"
-                android:layout_marginTop="45dp"
-                android:background="@color/colorPrimaryDark"
+                android:layout_below="@+id/user_details"
+                android:layout_marginTop="30dp"
+                android:background="@color/fui_bgTwitter"
                 android:text="Send a message"
-                android:textColor="@android:color/background_light"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:layout_centerHorizontal="true"
                 android:textStyle="bold"/>
+
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:mcv_showOtherDates="all"
+                app:mcv_selectionColor="#CE0088FF"
+                android:layout_below="@id/send_message_btn"
+                />
 
 
         </RelativeLayout>

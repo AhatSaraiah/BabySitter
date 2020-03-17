@@ -1,62 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".PostActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/home_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".PostActivity">
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+    <TextView
+        android:id="@+id/write_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_below="@+id/toolbar"
+        android:text="Write a post:"
+        android:padding="10dp"
+        android:textColor="@color/primary_darker"
+        android:textSize="25sp"
+    />
+
+    <EditText
+        android:id="@+id/post"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/write_post"
+        android:layout_marginTop="35dp"
+        android:background="@color/white"
+        android:hint="What are you looking for?"
+        android:textColor="@color/primary"
+        android:shadowRadius="@android:integer/config_mediumAnimTime"
+        />
+    <Button
+        android:id="@+id/Post_btn"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/write_post"
+        android:textSize="20sp"
+        android:layout_below="@id/post"
+        android:textColor="@color/white"
+        android:text="Post"/>
 
 
-        <include
-            android:id="@+id/postAuthorLayout"
-            layout="@layout/include_post_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true" />
 
-        <include
-            android:id="@+id/postTextLayout"
-            layout="@layout/include_post_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/postAuthorLayout"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp" />
+<!--        <include-->
+<!--            android:id="@+id/postAuthorLayout"-->
+<!--            layout="@layout/include_post_author"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_marginTop="25sp"-->
+<!--            android:layout_below="@id/Post_btn"/>-->
 
-        <LinearLayout
-            android:id="@+id/commentForm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@+id/postTextLayout"
-            android:layout_marginTop="20dp"
-            android:weightSum="1.0">
+<!--        <include-->
+<!--            android:id="@+id/postTextLayout"-->
+<!--            layout="@layout/include_post_text"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_below="@+id/postAuthorLayout"-->
+<!--            android:layout_marginStart="5dp"-->
+<!--            android:layout_marginTop="10dp" />-->
 
-            <EditText
-                android:id="@+id/fieldCommentText"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:hint="Write a comment..."/>
+<!--        <LinearLayout-->
+<!--            android:id="@+id/commentForm"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_below="@+id/postTextLayout"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:weightSum="1.0">-->
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonPostComment"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="wrap_content"
-                android:textSize="25dp"
-                android:textColor="@color/black"
-                android:text="Post"/>
+<!--            <EditText-->
+<!--                android:id="@+id/fieldCommentText"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_weight="0.8"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:maxLines="1"-->
+<!--                android:hint="Write a comment..."/>-->
 
-        </LinearLayout>
+<!--            <Button-->
+<!--                android:id="@+id/buttonPostComment"-->
+<!--                android:layout_width="150dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:text="Comment"/>-->
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerPostComments"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/commentForm"
-            tools:listitem="@layout/item_comment" />
+<!--        </LinearLayout>-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recyclerPostComments"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_below="@+id/commentForm"-->
+<!--            tools:listitem="@layout/item_comment" />-->
 
     </RelativeLayout>

@@ -46,12 +46,5 @@ public class User {
         return this;
     }
 
-    public boolean isGender() {
-        return gender;
-    }
 
-    public User setGender(boolean gender) {
-        this.gender = gender;
-        return this;
-    }
 }

@@ -34,9 +34,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.FindFriendsViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull Adapter.FindFriendsViewHolder holder, final int position) {
-    //    holder.setFullname(list.get(position).getFullname());
-    //    holder.setStatus(list.get(position).getStatus());
-   //     holder.setProfileimage(ct, list.get(position).getProfileimage());
+        holder.setFullname(list.get(position).getFullname());
+        holder.setAbout(list.get(position).getAboutMe());
+        holder.setProfileimage(ct, list.get(position).getProfileimage());
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,9 +72,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.FindFriendsViewHolder>
             myName.setText(fullname);
         }
 
-        public void setStatus(String status) {
-            TextView myStatus =  mView.findViewById(R.id.all_users_status);
-            myStatus.setText(status);
+        public void setAbout(String aboutme) {
+            TextView about =  mView.findViewById(R.id.all_users_aboutme);
+            about.setText(aboutme);
         }
     }
 }

@@ -1,23 +1,18 @@
 package com.example.sitter;
-
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -39,12 +33,11 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import de.hdodenhof.circleimageview.CircleImageView;
-
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -54,8 +47,8 @@ public class HomeActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
-    private RecyclerView postList;
     private Toolbar mToolbar;
+
 
     private FirebaseRecyclerAdapter adapter;
     private CircleImageView NavProfileImage;
@@ -67,10 +60,7 @@ public class HomeActivity extends AppCompatActivity {
     private StorageReference UserProfileImageRef;
 
     String currentUserID;
-
     private RecyclerView postsList;
-    Boolean LikeChecker = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         currentUserID = mAuth.getCurrentUser().getUid();
         UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
         PostsRef = FirebaseDatabase.getInstance().getReference().child("Posts");
-        LikesRef = FirebaseDatabase.getInstance().getReference().child("Likes");
-
         UserProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
-
 
         drawerLayout = findViewById(R.id.drw);
         navigationView = findViewById(R.id.navigation);
@@ -95,8 +82,8 @@ public class HomeActivity extends AppCompatActivity {
         linearLayoutManager.setStackFromEnd(true);
         postsList.setLayoutManager(linearLayoutManager);
 
-        mToolbar = (Toolbar) findViewById(R.id.home_toolbar);
-           setSupportActionBar(mToolbar);
+        mToolbar = findViewById(R.id.home_toolbar);
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Home");
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(HomeActivity.this, drawerLayout, R.string.drawer_open, R.string.drawer_close);
@@ -105,9 +92,8 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         View navView = navigationView.inflateHeaderView(R.layout.header_nav);
-
-        NavProfileImage = (CircleImageView) navView.findViewById(R.id.nav_profile_image);
-        NavProfileUserName = (TextView) navView.findViewById(R.id.nav_user_full_name);
+        NavProfileImage =  navView.findViewById(R.id.nav_profile_image);
+        NavProfileUserName=navView.findViewById(R.id.nav_user_full_name);
 
         UsersRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
             @Override
@@ -130,14 +116,13 @@ public class HomeActivity extends AppCompatActivity {
                         Toast.makeText(HomeActivity.this, "Profile name do not exists...", Toast.LENGTH_SHORT).show();
                     }
                 }
-            }
+        }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -152,7 +137,6 @@ public class HomeActivity extends AppCompatActivity {
 
     private void DisplayAllUsersPosts() {
         Query SortPostsInDecendingOrder = PostsRef.orderByChild("counter");
-
         FirebaseRecyclerOptions<Post> options =
                 new FirebaseRecyclerOptions.Builder<Post>()
                         .setQuery(SortPostsInDecendingOrder, Post.class)
@@ -169,57 +153,11 @@ public class HomeActivity extends AppCompatActivity {
                 holder.setDescription(model.getDescription());
                 holder.setProfileimage(getApplicationContext(), model.getProfileimage());
 
-               // holder.setLikeButtonStatus(PostKey);
-//                holder.mView.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        Intent clickPostIntent = new Intent(HomeActivity.this, ClickPostActivity.class);
-//                        clickPostIntent.putExtra("PostKey", PostKey);
-//                        startActivity(clickPostIntent);
-//                    }
-//                });
-
-//                holder.CommentPostButton.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        Intent commentsIntent = new Intent(HomeActivity.this, CommentsActivity.class);
-//                        commentsIntent.putExtra("PostKey", PostKey);
-//                        startActivity(commentsIntent);
-//                    }
-//                });
-
-//                holder.LikePostButton.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        LikeChecker = true;
-//
-//                        LikesRef.addValueEventListener(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                                if (LikeChecker == true) {
-//                                    if (dataSnapshot.child(PostKey).hasChild(currentUserID)) {
-//                                        LikesRef.child(PostKey).child(currentUserID).removeValue();
-//                                        LikeChecker = false;
-//                                    } else {
-//                                        LikesRef.child(PostKey).child(currentUserID).setValue(true);
-//                                        LikeChecker = false;
-//                                    }
-//                                }
-//                            }
-//
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                            }
-//                        });
-//                    }
-//                });
-
             }
 
             @Override
             public PostsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    //
+
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.item_post, parent, false);
 
@@ -229,61 +167,23 @@ public class HomeActivity extends AppCompatActivity {
 
         postsList.setAdapter(adapter);
 
-       // updateUserStatus("online");
+       updateUserStatus("online");
         }
-
-
-
 
     public static class PostsViewHolder extends RecyclerView.ViewHolder
     {
         View mView;
 
-        ImageButton LikePostButton, CommentPostButton;
-        TextView DisplayNoOfLikes;
-        int countLikes;
         String currentUserID;
-        DatabaseReference LikesRef;
+
 
         public PostsViewHolder(View itemView)
         {
             super(itemView);
             mView = itemView;
-
-//           LikePostButton = (ImageButton) mView.findViewById(R.id.like_button);
-//            CommentPostButton = (ImageButton) mView.findViewById(R.id.comment_button);
-//            DisplayNoOfLikes = (TextView) mView.findViewById(R.id.dislike_no_of_like);
-
-            LikesRef = FirebaseDatabase.getInstance().getReference().child("Likes");
             currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         }
-
-//        public void setLikeButtonStatus(final String PostKey)
-//        {
-//            LikesRef.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                    if(dataSnapshot.child(PostKey).hasChild(currentUserID))
-//                    {
-//                        countLikes = (int) dataSnapshot.child(PostKey).getChildrenCount();
-//                    //    LikePostButton.setImageResource(R.drawable.like);
-//                        DisplayNoOfLikes.setText((Integer.toString(countLikes) + " Likes"));
-//                    }
-//                    else
-//                    {
-//                        countLikes = (int) dataSnapshot.child(PostKey).getChildrenCount();
-//                      //  LikePostButton.setImageResource(R.drawable.dislike);
-//                        DisplayNoOfLikes.setText((Integer.toString(countLikes) + " Likes"));
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                }
-//            });
-//        }
 
         public void setFullname(String fullname)
         {
@@ -316,7 +216,9 @@ public class HomeActivity extends AppCompatActivity {
             PostDescription.setText(description);
         }
 
-       }
+        public void bindToPost(Post model, View.OnClickListener posts) {
+        }
+    }
 
         public  void updateUserStatus(String state)
         {
@@ -350,35 +252,37 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     private void UserMenuSelector(MenuItem item) {
           String id;
         switch (item.getItemId()) {
 
             case R.id.home:
-                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_write_post:
+                SendUserToPostActivity();
                 break;
             case R.id.nav_profile:
-                Toast.makeText(this, "profile", Toast.LENGTH_SHORT).show();
                 SendUserToMyProfileActivity();
                 break;
             case R.id.nav_search:
                     SendUserToFindSitterActivity();
+                    break;
+            case R.id.nav_favorits:
                 break;
-//            case R.id.nav_friends:
-//                break;
-//            case R.id.nav_messages:
-//                break;
-//            case R.id.nav_settings:
-//                break;
+            case R.id.nav_messages:
+              //  SendUserToChatActivity();
+                break;
+            case R.id.nav_settings:
+                break;
+                case R.id.nav_edit_information:
+                    SendUserToSetupActivity();
+                    break;
             case R.id.nav_logout:
                 mAuth.signOut();
                 SendUserToLoginActivity();
                 break;
            }
         }
-
-
 
     @Override
     protected void onStart()
@@ -396,8 +300,6 @@ public class HomeActivity extends AppCompatActivity {
             CheckUserExistence();
         }
     }
-
-
 
     private void CheckUserExistence() {
 
@@ -420,9 +322,9 @@ public class HomeActivity extends AppCompatActivity {
             });
         } else {
             // User is not signed in
-            // Do some stuff
         }
      }
+
     private void SendUserToLoginActivity()
     {
         Intent loginIntent = new Intent(HomeActivity.this, LoginActivity.class);
@@ -436,10 +338,24 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(FindSitterIntent);
     }
 
+
     private void SendUserToMyProfileActivity()
     {
         Intent ProfileIntent = new Intent(HomeActivity.this, MyProfileActivity.class);
         startActivity(ProfileIntent);
     }
+
+    private void SendUserToSetupActivity()
+    {
+        Intent SetupIntent = new Intent(HomeActivity.this, SetupActivity.class);
+        startActivity(SetupIntent);
+    }
+
+ private void SendUserToPostActivity()
+    {
+        Intent intent = new Intent(HomeActivity.this, PostActivity.class);
+        startActivity(intent);
+    }
+
 
 }

@@ -235,7 +235,7 @@ public class SetupActivity extends AppCompatActivity {
 
                         Toast.makeText(SetupActivity.this, "your Account is created Successfully.", Toast.LENGTH_LONG).show();
                         loadingBar.dismiss();
-                        SendUserToHomeActivity(username,fullname,city,aboutme);
+                        SendUserToHomeActivity();
                     }
                     else
                     {
@@ -248,15 +248,9 @@ public class SetupActivity extends AppCompatActivity {
         }
    }
 
-
-    private void SendUserToHomeActivity(String username,String fullname, String city, String aboutme)
+    private void SendUserToHomeActivity()
     {
-        Intent ProfileIntent = new Intent(SetupActivity.this, MyProfileActivity.class);
-       // mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        ProfileIntent.putExtra("USER_NAME",username );
-//        ProfileIntent.putExtra("FULL_NAME",fullname );
-//        ProfileIntent.putExtra("CITY",city );
-//        ProfileIntent.putExtra("ABUT_ME",aboutme );
+        Intent ProfileIntent = new Intent(SetupActivity.this, HomeActivity.class);
         startActivity(ProfileIntent);
         finish();
     }

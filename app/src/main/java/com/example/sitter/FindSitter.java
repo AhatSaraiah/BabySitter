@@ -3,7 +3,7 @@ package com.example.sitter;
 public class FindSitter {
     public String profileimage, fullname, aboutMe, userID;
 
-    public FindSitter() {}
+
 
     public FindSitter(String profileimage, String fullname, String aboutMe, String userID) {
         this.profileimage = profileimage;
@@ -11,6 +11,7 @@ public class FindSitter {
         this.aboutMe = aboutMe;
         this.userID = userID;
     }
+
 
     public String getUserID() {
         return userID;

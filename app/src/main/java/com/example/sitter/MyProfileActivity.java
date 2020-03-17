@@ -1,8 +1,12 @@
 package com.example.sitter;
 import android.content.Intent;
 import android.os.Bundle;
+
+import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -10,6 +14,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
@@ -19,10 +25,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MyProfileActivity extends AppCompatActivity {
     private TextView userName, userProfName, aboutMe, userCity, userGender;
     private CircleImageView userProfileImage;
-
-    private DatabaseReference profileUserRef, FriendsRef, PostsRef;
+    private CalendarView calendarView;
+    private Toolbar mToolbar;
+    private DatabaseReference profileUserRef, PostsRef;
     private FirebaseAuth mAuth;
     private Button MyPosts;
+    MaterialCalendarView materialCalendarView;
 
     private String currentUserid;
     private int countPosts = 0;
@@ -36,53 +44,49 @@ public class MyProfileActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUserid = mAuth.getCurrentUser().getUid();
         profileUserRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserid);
-        FriendsRef = FirebaseDatabase.getInstance().getReference().child("Friends");
         PostsRef = FirebaseDatabase.getInstance().getReference().child("Posts");
 
          userName = findViewById(R.id.my_username);
-       //  userName.setText(intent.getStringExtra("USER_NAME"));
          userProfName= findViewById(R.id.my_full_name);
-       //  userName.setText(intent.getStringExtra("FULL_NAME"));
+         aboutMe = findViewById(R.id.about_me);
+         userCity =findViewById(R.id.my_city);
+         userProfileImage = findViewById(R.id.my_profile_pic);
+        materialCalendarView = findViewById(R.id.calendarView);
 
-        aboutMe = findViewById(R.id.about_me);
-      //  userName.setText(intent.getStringExtra("ABOUT_ME"));
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("My profile");
 
-        userCity =findViewById(R.id.my_city);
-      //  userName.setText(intent.getStringExtra("CITY"));
+                MyPosts = findViewById(R.id.my_posts);
+        MyPosts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                SendUsertoPostActivity();
+            }
+        });
 
-        userProfileImage = findViewById(R.id.my_profile_pic);
-     //   MyPosts =findViewById(R.id.my_post_button);
+        PostsRef.orderByChild("uid")
+                .startAt(currentUserid).endAt(currentUserid + "\uf8ff")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists())
+                        {
+                            countPosts = (int) dataSnapshot.getChildrenCount();
+                            MyPosts.setText(Integer.toString(countPosts) + "  Posts");
+                        }
+                        else
+                        {
+                            MyPosts.setText("0  Posts");
+                        }
+                    }
 
-//
-//        MyPosts.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view)
-//            {
-//                SendUsertoMyPostsActivity();
-//            }
-//        });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-//        PostsRef.orderByChild("uid")
-//                .startAt(currentUserid).endAt(currentUserid + "\uf8ff")
-//                .addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        if(dataSnapshot.exists())
-//                        {
-//                      //      countPosts = (int) dataSnapshot.getChildrenCount();
-//                       //     MyPosts.setText(Integer.toString(countPosts) + "  Posts");
-//                        }
-//                        else
-//                        {
-//                            MyPosts.setText("0  Posts");
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                    }
-//                });
+                    }
+                });
 
 
 
@@ -110,11 +114,10 @@ public class MyProfileActivity extends AppCompatActivity {
             }
         });
 
+
     }
-
-
-//    private void SendUsertoMyPostsActivity() {
-//        Intent settingsIntent =  new Intent(MyProfileActivity.this, MyPostsActivity.class);
-//        startActivity(settingsIntent);
-//    }
+    private void SendUsertoPostActivity() {
+        Intent settingsIntent =  new Intent(MyProfileActivity.this, PostActivity.class);
+        startActivity(settingsIntent);
+    }
 }

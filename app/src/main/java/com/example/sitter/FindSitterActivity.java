@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -48,10 +47,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
         setContentView(R.layout.activity_find_sitter);
 
         allUsersDatabaseRef = FirebaseDatabase.getInstance().getReference().child("Users");
-
-//        setSupportActionBar(mToolBar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setTitle("Find Friends");
+        mToolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Find Sitters");
 
         SearchResultList =findViewById(R.id.search_result_list);
         SearchResultList.setHasFixedSize(true);
@@ -61,12 +60,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
         simpleText = findViewById(R.id.simpleTextID);
         SearchInputText =  findViewById(R.id.search_box_input);
 
-        SearchPeopleFriends("ariana");
+        SearchSitters("search");
         SearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String searchBoxInput = SearchInputText.toString();
-                SearchPeopleFriends(searchBoxInput);
+                SearchSitters(searchBoxInput);
             }
         });
     }
@@ -84,8 +83,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
                         list = new ArrayList<FindSitter>();
                         for(DataSnapshot ds: dataSnapshot.getChildren())
                         {
-                            FindSitter sitter = new FindSitter(ds.child("profileimage").getValue().toString(),ds.child("fullname").getValue().toString(),ds.child("status").getValue().toString(),ds.getKey());
+                            FindSitter sitter;
+                            sitter = new  FindSitter(ds.child("profileimage").getValue(String.class),ds.child("fullname").getValue(String.class),ds.child("aboutMe").getValue(String.class),ds.getKey());
                             list.add(sitter);
+
+
+
                         }
                         Adapter adapterClass = new Adapter(list, getApplicationContext());
                         SearchResultList.setAdapter(adapterClass);
@@ -140,9 +143,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
         SearchResultList.setAdapter(adapterClass);
     }
 
-    private void SearchPeopleFriends(String searchBoxInput)
+    private void SearchSitters(String searchBoxInput)
     {
-        Query searchPeopleQuery = allUsersDatabaseRef.orderByChild("fullname")
+        Query searchPeopleQuery = allUsersDatabaseRef.orderByChild("city")
                 .startAt(searchBoxInput).endAt(searchBoxInput + "\uf8ff");
 
         FirebaseRecyclerOptions<FindSitter> options =
@@ -157,7 +160,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
                 holder.setAboutMe(model.getAboutMe());
 
                 holder.setProfileimage(getApplicationContext(), model.getProfileimage());
-                Toast.makeText(FindSitterActivity.this,model.getFullname(), Toast.LENGTH_LONG ).show();
 
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -203,7 +205,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
         }
 
         public void setAboutMe(String aboutme) {
-            TextView aboutMe = mView.findViewById(R.id.all_users_status);
+            TextView aboutMe = mView.findViewById(R.id.all_users_aboutme);
             aboutMe.setText(aboutme);
         }
 

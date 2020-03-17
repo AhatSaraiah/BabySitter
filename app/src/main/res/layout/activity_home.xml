@@ -4,12 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drw"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeActivity">
 
-
-<RelativeLayout
-
+   <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,25 +20,45 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
+    <ImageView
+        android:id="@+id/img1"
+        android:layout_below="@+id/home_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/nany"/>
+    <ImageView
+        android:id="@+id/img2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/img1"
+        android:src="@drawable/hi_baby"/>
+
+       <TextView
+           android:layout_width="400dp"
+           android:layout_height="200dp"
+           android:layout_centerInParent="true"
+           android:text="Welcome to BabySitter app"
+           android:textColor="@color/primary_dark"
+           android:textSize="28sp"
+           android:textStyle="bold|normal"
+           android:layout_centerHorizontal="true"
+           android:layout_below="@+id/img2"/>
 
     <FrameLayout
         android:id="@+id/main_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/home_toolbar"
         android:layout_marginStart="0dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/all_users_posts"
             android:layout_width="match_parent"
-            android:layout_height="489dp" />
+            android:layout_height="400dp" />
 
 
     </FrameLayout>
-
-</RelativeLayout>
-
+    </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation"
