@@ -94,11 +94,11 @@ public class MyProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    String myProfileImage = dataSnapshot.child("profileimage").getValue().toString();
-                    String myUserName = dataSnapshot.child("username").getValue().toString();
-                    String myProfileName = dataSnapshot.child("fullname").getValue().toString();
-                    String myCity = dataSnapshot.child("city").getValue().toString();
-                    String moreAboutMe= dataSnapshot.child("aboutMe").getValue().toString();
+                    String myProfileImage = dataSnapshot.child("profileimage").getValue(String.class);
+                    String myUserName = dataSnapshot.child("username").getValue(String.class);
+                    String myProfileName = dataSnapshot.child("fullname").getValue(String.class);
+                    String myCity = dataSnapshot.child("city").getValue(String.class);
+                    String moreAboutMe= dataSnapshot.child("aboutMe").getValue(String.class);
 
                     Picasso.with(MyProfileActivity.this).load(myProfileImage).placeholder(R.drawable.profile).into(userProfileImage);
                     userName.setText("@" + myUserName);

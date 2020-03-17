@@ -240,7 +240,6 @@ public class SetupActivity extends AppCompatActivity {
                     else
                     {
                         String message =  task.getException().getMessage();
-                        Toast.makeText(SetupActivity.this, "Error Occured: " + message, Toast.LENGTH_SHORT).show();
                         loadingBar.dismiss();
                     }
                 }

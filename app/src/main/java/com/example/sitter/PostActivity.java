@@ -120,8 +120,8 @@ public class PostActivity extends AppCompatActivity {
             {
                 if(dataSnapshot.exists())
                 {
-                    String userFullName = dataSnapshot.child("fullname").getValue().toString();
-                    String userProfileImage = dataSnapshot.child("profileimage").getValue().toString();
+                    String userFullName = dataSnapshot.child("fullname").getValue(String.class);
+                    String userProfileImage = dataSnapshot.child("profileimage").getValue(String.class);
 
                     HashMap<String, Object> postsMap = new HashMap<>();
                     postsMap.put("uid", current_user_id);
