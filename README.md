@@ -1,4 +1,4 @@
-<a href="http://fvcproductions.com"><img src="https://github.com/AhatSaraiah/BabySitter/blob/master/app/src/main/logo.png"  ></a>
+<img src="https://github.com/AhatSaraiah/BabySitter/blob/master/app/src/main/logo.png"  >
 
 
 # BabySitter
