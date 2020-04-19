@@ -1,4 +1,4 @@
-package com.example.sitter;
+package com.example.sitter.Activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sitter.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -32,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button LogIn_btn;
 
     private FirebaseAuth mAuth;
-    constants c;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

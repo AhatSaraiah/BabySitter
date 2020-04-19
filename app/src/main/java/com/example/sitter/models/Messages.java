@@ -1,4 +1,4 @@
-package com.example.sitter;
+package com.example.sitter.models;
 
 public class Messages {
 

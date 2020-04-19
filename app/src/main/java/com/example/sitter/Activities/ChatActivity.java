@@ -1,4 +1,4 @@
-package com.example.sitter;
+package com.example.sitter.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +19,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sitter.models.Messages;
+import com.example.sitter.R;
+import com.example.sitter.adapters.MessageAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;

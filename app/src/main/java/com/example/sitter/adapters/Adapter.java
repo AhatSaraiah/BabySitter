@@ -1,4 +1,4 @@
-package com.example.sitter;
+package com.example.sitter.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sitter.Activities.UserProfileActivity;
+import com.example.sitter.models.FindSitter;
+import com.example.sitter.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

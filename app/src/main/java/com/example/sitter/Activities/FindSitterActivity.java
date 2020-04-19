@@ -1,4 +1,4 @@
-package com.example.sitter;
+package com.example.sitter.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.sitter.adapters.Adapter;
+import com.example.sitter.models.FindSitter;
+import com.example.sitter.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;

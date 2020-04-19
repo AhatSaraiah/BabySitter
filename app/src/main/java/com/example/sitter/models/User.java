@@ -1,4 +1,4 @@
-package com.example.sitter;
+package com.example.sitter.models;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

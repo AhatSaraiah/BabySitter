@@ -1,4 +1,4 @@
-package com.example.sitter;
+package com.example.sitter.adapters;
 
 import android.graphics.Color;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.sitter.models.Messages;
+import com.example.sitter.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

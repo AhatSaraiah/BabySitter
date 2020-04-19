@@ -6,7 +6,7 @@
     android:id="@+id/drw"
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeActivity">
+    tools:context=".Activities.HomeActivity">
 
    <RelativeLayout
     android:layout_width="match_parent"

@@ -13,15 +13,15 @@
         android:roundIcon="@mipmap/ic_luncher_logositter_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChatActivity" />
-        <activity android:name=".SetupActivity" />
-        <activity android:name=".PostActivity" />
-        <activity android:name=".FindSitterActivity" />
-        <activity android:name=".UserProfileActivity" />
-        <activity android:name=".MyProfileActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".signUpActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".Activities.ChatActivity" />
+        <activity android:name=".Activities.SetupActivity" />
+        <activity android:name=".Activities.PostActivity" />
+        <activity android:name=".Activities.FindSitterActivity" />
+        <activity android:name=".Activities.UserProfileActivity" />
+        <activity android:name=".Activities.MyProfileActivity" />
+        <activity android:name=".Activities.HomeActivity" />
+        <activity android:name=".Activities.signUpActivity" />
+        <activity android:name=".Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

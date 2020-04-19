@@ -1,10 +1,6 @@
-package com.example.sitter;
+package com.example.sitter.models;
 
-import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @IgnoreExtraProperties
 
