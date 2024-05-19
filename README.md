@@ -2,8 +2,6 @@
 
 # BabySitter Android App
 
-> BabySitter application
-
 > Make it easy to find a baby sitter
 <img src="https://github.com/AhatSaraiah/BabySitter/blob/master/app/src/main/logo.png"  >
 
